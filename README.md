@@ -16,5 +16,18 @@ submission
 └───url.txt
 
 # Dataset
-hour.csv : Pada data set ini berisikan informasi tentang berapa jam penyewa menyewa sepeda
-day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada saat menyewa sepeda setiap harinya
+hour.csv : Pada data set ini berisikan informasi tentang berapa jam penyewa menyewa sepeda.
+day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada saat menyewa sepeda setiap harinya.
+
+# Visualisasi
+Matriks Korelasi
+ Pada visualisasi ini menunjukan adanya fitur fitur yang berbeda didataset. Visualisasi ini membantu memahami variable yang mana berkorelasi kuat dengan penyewaan sepeda.
+
+Grafik Penyewaan Sepeda
+  Grafik ini memvisualisasikan distribusi total penyewaan sepeda yang dimana untuk menunjukan frekuensi jumlah penyewaan yang berbeda.
+
+Katagori Penyewaan Sepeda per Musim
+  Yang dimana mengkatagorikan penyewaan sepeda berdasarkan setiap musim, sehingga lebih memudahkan untuk bisa membandingkan setiap tahunnya.
+
+Analisis Pengelompokan
+ Untuk mengelompokkan data ke dalam beberapa cluster yang diterapkan pada fitur-fitur yang dipilih seperti auhu,kelembapan,kecepatan angin, dan jumlah penyewaan sepeda. Hasil dari divisualisasikan menunjukkan tingkat suhu dan penyewaan sepeda yang berbeda membentuk cluster.
