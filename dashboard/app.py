@@ -8,7 +8,7 @@ import streamlit as st
 # Load dataset
 df = pd.read_csv('dashboard/main_data.csv')
 
-# Data Exploration for main_data.csv
+# data eksplor main_data
 def explore_data(df):
     # Visualization - Correlation matrix
     correlation_matrix = df.corr()
@@ -17,7 +17,7 @@ def explore_data(df):
     plt.title('Correlation Matrix for Main Data')
     st.pyplot(plt)
 
-    # Histogram of Bike Rentals
+    # grafik penyewaan sepeda
     plt.figure(figsize=(10, 6))
     plt.hist(df['cnt'], bins=20)
     plt.xlabel('Total Bike Rentals')
@@ -25,7 +25,7 @@ def explore_data(df):
     plt.title('Histogram of Bike Rentals')
     st.pyplot(plt)
 
-    # Box plot per season
+    # grafik per season
     plt.figure(figsize=(10, 6))
     sns.boxplot(x='season', y='cnt', data=df)
     plt.xlabel('Season')
@@ -33,7 +33,7 @@ def explore_data(df):
     plt.title('Box Plot of Bike Rentals per Season')
     st.pyplot(plt)
 
-# Analyze the impact of holidays on bike rentals
+# analisis penyewaan sepeda pada hari libur 
 def analyze_holiday_impact(df):
     holiday_rental = df.groupby('holiday')['cnt'].mean()
     plt.figure(figsize=(8, 6))
@@ -43,7 +43,7 @@ def analyze_holiday_impact(df):
     plt.title('Impact of Holiday on Bike Rentals')
     st.pyplot(plt)
 
-# Analyze the impact of weather on bike rentals
+# analisa dampak dari cuaca
 def analyze_weather_impact(df):
     plt.figure(figsize=(10, 6))
     sns.boxplot(x='weekday', y='cnt', hue='weathersit', data=df)
@@ -52,7 +52,7 @@ def analyze_weather_impact(df):
     plt.title('Impact of Weather and Weekday on Bike Rentals')
     st.pyplot(plt)
 
-    # Scatter plots for temp, hum, and windspeed
+    # grafik pada suhu, kelembapan dan angin
     for feature in ['temp', 'hum', 'windspeed']:
         plt.figure(figsize=(10, 6))
         plt.scatter(df[feature], df['cnt'])
@@ -61,12 +61,12 @@ def analyze_weather_impact(df):
         plt.title(f'Impact of {feature.capitalize()} on Bike Rentals')
         st.pyplot(plt)
 
-# Clustering analysis
+# clustering analisis
 def clustering_analysis(df):
     features = ['temp', 'hum', 'windspeed', 'cnt']
     X = df[features]
     
-    # Standardizing the data
+    # standar pada data
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
     
@@ -77,7 +77,7 @@ def clustering_analysis(df):
     
     df['cluster'] = kmeans.labels_
 
-    # Visualization of clusters
+    # visualisasi pada  clusters
     plt.figure(figsize=(10, 6))
     plt.scatter(df['temp'], df['cnt'], c=df['cluster'], cmap='viridis')
     plt.xlabel('Temperature')
@@ -85,12 +85,12 @@ def clustering_analysis(df):
     plt.title('Clustering Results based on Temperature and Bike Rentals')
     st.pyplot(plt)
 
-# Main execution
+# running program
 if __name__ == "__main__":
-    # Convert date column
+    # mengkonfersi data pada kolom date
     df['dteday'] = pd.to_datetime(df['dteday'])
 
-    # Display visualizations
+    # menampilkan visualisasi
     st.title('Bike Rental Data Visualization')
 
     explore_data(df)
