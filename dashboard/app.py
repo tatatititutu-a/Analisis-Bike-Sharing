@@ -1,57 +1,29 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
-import streamlit as st  # Impor Streamlit
+import streamlit as st
 
 # Load dataset
 df = pd.read_csv('dashboard/main_data.csv')
 
 # Data Exploration for main_data.csv
 def explore_data(df):
-    st.write("Lima baris teratas dari data main_data.csv:")
-    st.write(df.head())
-    st.write("\nInformasi umum dari data main_data.csv:")
-    st.write(df.info())
-    st.write("\nStatistik deskriptif dari data main_data.csv:")
-    st.write(df.describe())
-    st.write("\nJumlah nilai yang hilang (missing values) dalam data main_data.csv:")
-    st.write(df.isnull().sum())
-    st.write("\nJumlah duplikat pada data main_data.csv:")
-    st.write(df.duplicated().sum())
-
-    # Grouping analysis
-    st.write("\nTotal Bike Rentals per Season:")
-    st.write(df.groupby('season')['cnt'].sum())
-    st.write("\nTotal Bike Rentals per Year:")
-    st.write(df.groupby('yr')['cnt'].sum())
-    st.write("\nTotal Bike Rentals per Month:")
-    st.write(df.groupby('mnth')['cnt'].sum())
-    st.write("\nTotal Bike Rentals per Weekday:")
-    st.write(df.groupby('weekday')['cnt'].sum())
-    st.write("\nTotal Bike Rentals per Weather Situation:")
-    st.write(df.groupby('weathersit')['cnt'].sum())
-
-    # Correlation matrix
+    # Visualization - Correlation matrix
     correlation_matrix = df.corr()
-    st.write("\nCorrelation Matrix for main_data.csv:")
-    st.write(correlation_matrix)
-
-    # Visualization
     plt.figure(figsize=(10, 6))
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
     plt.title('Correlation Matrix for Main Data')
-    st.pyplot(plt)  # Ganti plt.show() dengan st.pyplot()
+    st.pyplot(plt)
 
-    # Histogram
+    # Histogram of Bike Rentals
     plt.figure(figsize=(10, 6))
     plt.hist(df['cnt'], bins=20)
     plt.xlabel('Total Bike Rentals')
     plt.ylabel('Frequency')
     plt.title('Histogram of Bike Rentals')
-    st.pyplot(plt)  # Ganti plt.show() dengan st.pyplot()
+    st.pyplot(plt)
 
     # Box plot per season
     plt.figure(figsize=(10, 6))
@@ -59,7 +31,7 @@ def explore_data(df):
     plt.xlabel('Season')
     plt.ylabel('Total Bike Rentals')
     plt.title('Box Plot of Bike Rentals per Season')
-    st.pyplot(plt)  # Ganti plt.show() dengan st.pyplot()
+    st.pyplot(plt)
 
 # Analyze the impact of holidays on bike rentals
 def analyze_holiday_impact(df):
@@ -69,7 +41,7 @@ def analyze_holiday_impact(df):
     plt.xlabel('Holiday (0: No, 1: Yes)')
     plt.ylabel('Average Bike Rentals')
     plt.title('Impact of Holiday on Bike Rentals')
-    st.pyplot(plt)  # Ganti plt.show() dengan st.pyplot()
+    st.pyplot(plt)
 
 # Analyze the impact of weather on bike rentals
 def analyze_weather_impact(df):
@@ -78,16 +50,16 @@ def analyze_weather_impact(df):
     plt.xlabel('Weekday')
     plt.ylabel('Total Bike Rentals')
     plt.title('Impact of Weather and Weekday on Bike Rentals')
-    st.pyplot(plt)  # Ganti plt.show() dengan st.pyplot()
+    st.pyplot(plt)
 
-    # Scatter plots
+    # Scatter plots for temp, hum, and windspeed
     for feature in ['temp', 'hum', 'windspeed']:
         plt.figure(figsize=(10, 6))
         plt.scatter(df[feature], df['cnt'])
         plt.xlabel(feature.capitalize())
         plt.ylabel('Total Bike Rentals')
         plt.title(f'Impact of {feature.capitalize()} on Bike Rentals')
-        st.pyplot(plt)  # Ganti plt.show() dengan st.pyplot()
+        st.pyplot(plt)
 
 # Clustering analysis
 def clustering_analysis(df):
@@ -104,10 +76,6 @@ def clustering_analysis(df):
     kmeans.fit(X_scaled)
     
     df['cluster'] = kmeans.labels_
-    
-    # Summary of clusters
-    cluster_summary = df.groupby('cluster')[features].mean()
-    st.write(cluster_summary)
 
     # Visualization of clusters
     plt.figure(figsize=(10, 6))
@@ -115,19 +83,17 @@ def clustering_analysis(df):
     plt.xlabel('Temperature')
     plt.ylabel('Total Bike Rentals')
     plt.title('Clustering Results based on Temperature and Bike Rentals')
-    st.pyplot(plt)  # Ganti plt.show() dengan st.pyplot()
+    st.pyplot(plt)
 
 # Main execution
 if __name__ == "__main__":
     # Convert date column
     df['dteday'] = pd.to_datetime(df['dteday'])
 
-    # Explore the dataset
-    explore_data(df)
+    # Display visualizations
+    st.title('Bike Rental Data Visualization')
 
-    # Analyze impacts
+    explore_data(df)
     analyze_holiday_impact(df)
     analyze_weather_impact(df)
-
-    # Perform clustering analysis
     clustering_analysis(df)
