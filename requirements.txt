@@ -5,4 +5,4 @@ matplotlib==3.7.1
 seaborn==0.13.1
 streamlit
 setuptools
-scikit-learn
+scikit-learn==1.5.2
