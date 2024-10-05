@@ -92,8 +92,3 @@ if __name__ == "__main__":
 
     # menampilkan visualisasi
     st.title('Bike Rental Data Visualization')
-
-    explore_data(df)
-    analyze_holiday_impact(df)
-    analyze_weather_impact(df)
-    clustering_analysis(df)
