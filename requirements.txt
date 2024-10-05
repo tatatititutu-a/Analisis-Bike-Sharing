@@ -3,6 +3,6 @@ pandas==2.2.2
 numpy==1.26.4
 matplotlib==3.7.1
 seaborn==0.13.1
-streamlit
+streamlit==1.39.0
 setuptools==71.0.4
 scikit-learn==1.5.2
