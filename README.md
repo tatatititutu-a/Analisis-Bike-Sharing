@@ -1,6 +1,6 @@
 # Analisis-Bike-Sharing
 Deskripsi Proyek 
-Repositori ini berisi proyek analisis data yang berfokus pada eksplorasi data penyewaan sepeda. Hal ini bertujuan untuk mengungkap wawasan mengenai faktor-faktor yang memengaruhi penyewaan sepeda, seperti kondisi cuaca, hari libur, dan variabel lainnya. Selain itu, repositori ini juga mencakup analisis pengelompokan untuk mengelompokkan data berdasarkan fitur-fitur utama.
+Repositori ini berisi proyek analisis data yang berfokus pada eksplorasi data penyewaan sepeda. Hal ini bertujuan untuk mengungkap wawasan mengenai faktor-faktor yang memengaruhi penyewaan sepeda, seperti kondisi cuaca, hari libur, musim, hari biasa dan lainnya. Selain itu, repositori ini juga mencakup analisis pengelompokan untuk mengelompokkan data berdasarkan fitur-fitur utama.
 
 # Struktur Direktori
 submission
