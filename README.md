@@ -34,8 +34,10 @@ Analisis Pengelompokan
 
 # Penggunaan
 1. Mengkloning repositori ini ke mesin lokal
-    Pastikan untuk mengcopy link dibawah ini:
-    https://github.com/tatatititutu-a/Analisis-Bike-Sharing
-2.  Menjalankan Aplikasi Streamlit
-    Lalu Jalankan aplikasi Streamlit dengan perintah:
-    streamlit run app.py 
+
+   Salin tautan berikut ini:
+   https://github.com/tatatititutu-a/Analisis-Bike-Sharing
+2. Menjalankan Aplikasi Streamlit
+
+   Lalu Jalankan aplikasi Streamlit dengan perintah:
+   streamlit run app.py 
