@@ -10,10 +10,6 @@ df = pd.read_csv('dashboard/main_data.csv')
 
 # data eksplor main_data
 def explore_data(df):
-    # Calculate the correlation matrix
-    correlation_matrix = df.corr()
-    print(f"\nCorrelation Matrix for {file_path}:")
-    print(correlation_matrix)
 
     # Visualize the correlation matrix
     plt.figure(figsize=(10, 6))
