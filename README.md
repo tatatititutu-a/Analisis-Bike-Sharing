@@ -33,11 +33,14 @@ Analisis Pengelompokan
  Untuk mengelompokkan data ke dalam beberapa cluster yang diterapkan pada fitur-fitur yang dipilih seperti auhu,kelembapan,kecepatan angin, dan jumlah penyewaan sepeda. Hasil dari divisualisasikan menunjukkan tingkat suhu dan penyewaan sepeda yang berbeda membentuk cluster.
 
 # Penggunaan
-1. Mengkloning repositori ini ke mesin lokal
+1. Setup Lingkungan di Google Colab
+   Pastikan untuk install library yang memang diperlukan lalu jalankan kode dibawah ini:
+   !pip install -r requirements.txt
+2. Menajalankan Dashboard
+   
+3. 
 
-   Salin tautan berikut ini:
-   https://github.com/tatatititutu-a/Analisis-Bike-Sharing
-2. Menjalankan Aplikasi Streamlit
+5. Menjalankan Aplikasi Streamlit
 
    Lalu Jalankan aplikasi Streamlit dengan perintah:
    streamlit run app.py 
