@@ -44,4 +44,4 @@ Analisis Pengelompokan
    !streamlit run dashboard/app.py & npx localtunnel --port 8501
 
 3. # Link Dashboard
-   Untuk Link Dasboard bisa di akses melalui url.txt
+   Untuk Link Dasboard bisa di akses melalui url : https://achgik7ygfgngbkan6n5yz.streamlit.app/
