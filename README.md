@@ -20,6 +20,9 @@ hour.csv : Pada data set ini berisikan informasi tentang berapa jam penyewa meny
 day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada saat menyewa sepeda setiap harinya.
 
 # Visualisasi
+**Correlation matrix**
+ Pada Visualisasi menunjukan Correlation Matrix dari dataset utama yang digunakan untuk menganalisis penyewaan sepeda. Matriks ini memperlihatkan hubungan antara suhu (temp), kelembaban (hum), kecepatan angin (windspeed), dan total penyewaan (cnt) yang berpotensi mempengaruhi jumlah penyewaan sepeda.
+
 **Histogram Penyewaan Sepeda:**
  Pada visualisasi ini menunjukan distribusi total penyewaan sepeda per hari.
 
@@ -32,9 +35,9 @@ day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada s
 **Analisis Pengelompokan:**
   Hasil dari analisis kluster berdasarkan suhu dan jumlah penyewaan sepeda yang berbeda.
 
-# Penggunaan
-1. # Setup Lingkungan di Google Colab
-
+# Instalasi
+1. # Langkah-Langkah Setup di Google Colab
+   
    Pastikan untuk install library yang memang diperlukan lalu jalankan kode berikut ini:
    !pip install -r requirements.txt
    
