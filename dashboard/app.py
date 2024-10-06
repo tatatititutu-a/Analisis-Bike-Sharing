@@ -9,65 +9,53 @@ from sklearn.preprocessing import StandardScaler
 df1 = pd.read_csv('day.csv')
 df2 = pd.read_csv('hour.csv')
 
-# Bagian Data Explor
+# Convert 'dteday' to datetime
+df1['dteday'] = pd.to_datetime(df1['dteday'])
+df2['dteday'] = pd.to_datetime(df2['dteday'])
+
+# Judul Dashboard 
 st.title("Bike Rental Analysis Dashboard")
 
-st.header("Data Overview")
-if st.checkbox('Show first five rows of day.csv'):
-    st.write(df1.head())
-    
-if st.checkbox('Show information of day.csv'):
-    buffer = pd.io.formats.format.StringFormatter().to_string(df1.info())
-    st.text(buffer)
+# Menampilkan data informasi
+if st.checkbox('Show Data Information'):
+    st.subheader('Day Dataset Information')
+    st.write(df1.info())
+    st.subheader('Hour Dataset Information')
+    st.write(df2.info())
 
-if st.checkbox('Show descriptive statistics of day.csv'):
+# Menampilkan statistik dasar
+if st.checkbox('Show Descriptive Statistics'):
+    st.subheader('Descriptive Statistics for Day Dataset')
     st.write(df1.describe())
-    
-if st.checkbox('Show missing values in day.csv'):
-    st.write(df1.isnull().sum())
-
-if st.checkbox('Show first five rows of hour.csv'):
-    st.write(df2.head())
-    
-if st.checkbox('Show information of hour.csv'):
-    buffer = pd.io.formats.format.StringFormatter().to_string(df2.info())
-    st.text(buffer)
-
-if st.checkbox('Show descriptive statistics of hour.csv'):
+    st.subheader('Descriptive Statistics for Hour Dataset')
     st.write(df2.describe())
 
-if st.checkbox('Show missing values in hour.csv'):
+# Menampilkan nilai yang hilang
+if st.checkbox('Show Missing Values'):
+    st.subheader('Missing Values in Day Dataset')
+    st.write(df1.isnull().sum())
+    st.subheader('Missing Values in Hour Dataset')
     st.write(df2.isnull().sum())
 
-# Bagian visualisasi
-st.header("Visualizations")
-
-# Korelasi Matrix file day.csv
-if st.checkbox('Show Correlation Matrix for Day Data'):
-    plt.figure(figsize=(10, 6))
-    sns.heatmap(df1.corr(), annot=True, cmap='coolwarm')
-    plt.title('Correlation Matrix for Day Data')
-    st.pyplot()
-
-# Grafik penyewaan sepeda file day
+# Menampilkan grafik penyewaan sepeda per hari
 if st.checkbox('Show Histogram of Bike Rentals per Day'):
     plt.figure(figsize=(10, 6))
     plt.hist(df1['cnt'], bins=20, color='skyblue', edgecolor='black')
     plt.xlabel('Total Bike Rentals')
     plt.ylabel('Frequency')
     plt.title('Histogram of Bike Rentals per Day')
-    st.pyplot()
+    st.pyplot(plt)
 
-# Grafik per season
+# Menampilkan diagram penyewaan sepeda per musim
 if st.checkbox('Show Box Plot of Bike Rentals per Season'):
     plt.figure(figsize=(10, 6))
     sns.boxplot(x='season', y='cnt', data=df1, palette='Set3')
     plt.xlabel('Season')
     plt.ylabel('Total Bike Rentals')
     plt.title('Box Plot of Bike Rentals per Season')
-    st.pyplot()
+    st.pyplot(plt)
 
-# Grafik penyewaan sepeda
+# Analisis dampak liburan pada penyewaan sepeda
 if st.checkbox('Show Impact of Holiday on Bike Rentals'):
     holiday_rental = df1.groupby('holiday')['cnt'].mean()
     plt.figure(figsize=(8, 6))
@@ -75,9 +63,9 @@ if st.checkbox('Show Impact of Holiday on Bike Rentals'):
     plt.xlabel('Holiday (0: No, 1: Yes)')
     plt.ylabel('Average Bike Rentals')
     plt.title('Impact of Holiday on Bike Rentals')
-    st.pyplot()
+    st.pyplot(plt)
 
-# Rata-rata Sewa Berdasarkan Cuaca
+# Dampak cuaca pada penyewaan sepeda
 if st.checkbox('Show Impact of Weather on Bike Rentals'):
     weather_rental = df1.groupby('weathersit')['cnt'].mean()
     plt.figure(figsize=(8, 6))
@@ -85,44 +73,45 @@ if st.checkbox('Show Impact of Weather on Bike Rentals'):
     plt.xlabel('Weather Situation (1: Clear, 2: Mist, 3: Light Snow/Rain, 4: Heavy Rain/Snow)')
     plt.ylabel('Average Bike Rentals')
     plt.title('Impact of Weather on Bike Rentals')
-    st.pyplot()
+    st.pyplot(plt)
 
-# Distribusi Penyewaan Sepeda Berdasarkan Cuaca
-if st.checkbox('Show Distribution of Bike Rentals by Weather Situation'):
+    # Diagram untuk situasi cuaca
     plt.figure(figsize=(8, 6))
     sns.boxplot(x='weathersit', y='cnt', data=df1)
     plt.xlabel('Weather Situation')
     plt.ylabel('Total Bike Rentals')
     plt.title('Distribution of Bike Rentals by Weather Situation')
-    st.pyplot()
+    st.pyplot(plt)
 
-# Analisi bagian cluster
-st.header("Clustering Analysis")
-if st.checkbox('Show Clustering Results'):
+# Analisis Cluster
+if st.checkbox('Show Clustering Analysis'):
     features = ['temp', 'hum', 'windspeed', 'cnt']
     X = df2[features]
-    
-    # Stadar pada data 
+
+    # Standar pada data
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
-    
-    # KMeans Clustering
+
+    # Create KMeans model
     n_clusters = 3
     kmeans = KMeans(n_clusters=n_clusters, random_state=42)
     kmeans.fit(X_scaled)
     
-    # Tambahkan label cluster ke DataFrame
     df2['cluster'] = kmeans.labels_
-    
-    # Tampilan ringkasan klaster
+
+    # Show cluster summary
+    st.subheader('Cluster Summary')
     cluster_summary = df2.groupby('cluster')[features].mean()
-    st.write("Cluster Summary:")
     st.write(cluster_summary)
 
-    # Visualisasi hasil Cluster
+    # Visualisasi pada  clusters
     plt.figure(figsize=(10, 6))
     plt.scatter(df2['temp'], df2['cnt'], c=df2['cluster'], cmap='viridis')
     plt.xlabel('Temperature')
     plt.ylabel('Total Bike Rentals')
     plt.title('Clustering Results based on Temperature and Bike Rentals')
-    st.pyplot()
+    st.pyplot(plt)
+
+# Run the Streamlit app
+if __name__ == '__main__':
+    st.write("Dashboard is ready!")
