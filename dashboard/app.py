@@ -64,7 +64,3 @@ plt.xlabel('Temperature (temp_x)')
 plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Clustering Results based on Temperature and Bike Rentals')
 st.pyplot(plt)
-
-# Run the Streamlit app
-if _name_ == '_main_':
-    st.write("Dashboard is ready!")
