@@ -20,16 +20,16 @@ hour.csv : Pada data set ini berisikan informasi tentang berapa jam penyewa meny
 day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada saat menyewa sepeda setiap harinya.
 
 # Visualisasi
-**Histogram Penyewaan Sepeda**
+**Histogram Penyewaan Sepeda:**
  Pada visualisasi ini menunjukan distribusi total penyewaan sepeda per hari.
 
 **Box Plot Penyewaan Sepeda per Musim:**
   Grafik ini memvisualisasikan penyewaan sepeda berdasarkan musim yang berbeda.
   
-**Dampak Cuaca pada Penyewaan Sepeda**
+**Dampak Cuaca pada Penyewaan Sepeda:**
   Yang dimana mengkatagorikan penyewaan sepeda berdasarkan kondisi cuaca.
   
-**Analisis Pengelompokan**
+**Analisis Pengelompokan:**
   Hasil dari analisis kluster berdasarkan suhu dan jumlah penyewaan sepeda yang berbeda.
 
 # Penggunaan
