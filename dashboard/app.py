@@ -14,20 +14,20 @@ df['dteday'] = pd.to_datetime(df['dteday'])
 # Judul Dashboard 
 st.title("Bike Rental Analysis Dashboard")
 
-# Visualization - Correlation matrix
-st.subheader("Correlation Matrix")
-correlation_matrix = df.corr()
+# Visualization - Correlation matrix for day dataset
+st.subheader("Correlation Matrix for Day Dataset")
+correlation_matrix_day = df_day.corr()
 plt.figure(figsize=(10, 6))
 sns.heatmap(correlation_matrix_day, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix for Day')
+plt.title('Correlation Matrix for Day Dataset')
 st.pyplot(plt)
 
-# Visualization - Correlation matrix
-st.subheader("Correlation Matrix")
-correlation_matrix = df.corr()
+# Visualization - Correlation matrix for hour dataset
+st.subheader("Correlation Matrix for Hour Dataset")
+correlation_matrix_hour = df_hour.corr()
 plt.figure(figsize=(10, 6))
 sns.heatmap(correlation_matrix_hour, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix for Main Hour')
+plt.title('Correlation Matrix for Hour Dataset')
 st.pyplot(plt)
 
 
