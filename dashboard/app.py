@@ -10,12 +10,16 @@ df = pd.read_csv('dashboard/main_data.csv')
 
 # data eksplor main_data
 def explore_data(df):
-    # Visualization - Correlation matrix
+    # Calculate the correlation matrix
     correlation_matrix = df.corr()
+    print(f"\nCorrelation Matrix for {file_path}:")
+    print(correlation_matrix)
+
+    # Visualize the correlation matrix
     plt.figure(figsize=(10, 6))
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-    plt.title('Correlation Matrix for Main Data')
-    st.pyplot(plt)
+    plt.title(f'Correlation Matrix for {file_path}')
+    plt.show()
 
 # Convert 'dteday' to datetime
 df['dteday'] = pd.to_datetime(df['dteday'])
