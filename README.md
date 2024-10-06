@@ -32,19 +32,31 @@ day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada s
 **Dampak Cuaca pada Penyewaan Sepeda:**
   Yang dimana mengkatagorikan penyewaan sepeda berdasarkan kondisi cuaca.
   
-**Analisis Pengelompokan:**
-  Hasil dari analisis kluster berdasarkan suhu dan jumlah penyewaan sepeda yang berbeda.
-
+**Distribusi Penyewaan Sepeda Berdasarkan Situasi Cuaca**
+  Visualisasi ini menggambarkan distribusi total penyewaan sepeda yang dipengaruhi oleh situasi cuaca. 
+  
+ **Rata-rata penyewaan sepeda berdasarkan musim dan cuaca**
+  Visualisasi ini menggambarkan rata-rata penyewaan sepeda yang dipengaruhi oleh musim dan kondisi cuaca. Diagram batang ini memberikan pemahaman tentang bagaimana musim dan cuaca memengaruhi jumlah penyewaan sepeda.
+  
 # Instalasi
-1. # Langkah-Langkah Setup di Google Colab
+1. # Mengkloning repositori ini ke mesin lokal
+   
+   Pastikan untuk mengcopy link dibawah ini: https://github.com/tatatititutu-a/Analisis-Bike-Sharing
+
+2. # Langkah-Langkah Setup di Google Colab
    
    Pastikan untuk install library yang memang diperlukan lalu jalankan kode berikut ini:
    !pip install -r requirements.txt
    
-2. # Menajalankan Dashboard
+3. # Menajalankan Dashboard
 
    Ketika library sudah terinstall, lalu jalankan aplikasi streamlit dengan perintah berikut:
    !streamlit run dashboard/app.py & npx localtunnel --port 8501
 
-3. # Link Dashboard
-   Untuk Link Dasboard bisa di akses melalui url : https://achgik7ygfgngbkan6n5yz.streamlit.app/
+4. # Link Dashboard
+   
+   Untuk Link Dasboard bisa di akses melalui url :(https://xj7yqo7z9yz9r5mgkdyxly.streamlit.app/)
+
+5. # Menjalankan Aplikasi Streamlit (Opsional)
+   
+  Jika ingin menjalankan aplikasi Streamlit (di luar Google Colab), masuk ke direktori repositori Anda, lalu jalankan perintah berikut: streamlit run app.py 
