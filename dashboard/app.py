@@ -15,6 +15,7 @@ df['dteday'] = pd.to_datetime(df['dteday'])
 st.title("Bike Rental Analysis Dashboard")
 
 # Visualization - Correlation matrix
+st.subheader("Correlation Matrix")
 correlation_matrix = df.corr()
 plt.figure(figsize=(10, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
