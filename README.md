@@ -32,10 +32,10 @@ day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada s
 **Dampak Cuaca pada Penyewaan Sepeda:**
   Yang dimana mengkatagorikan penyewaan sepeda berdasarkan kondisi cuaca.
   
-**Distribusi Penyewaan Sepeda Berdasarkan Situasi Cuaca**
+**Distribusi Penyewaan Sepeda berdasarkan Situasi Cuaca:**
   Visualisasi ini menggambarkan distribusi total penyewaan sepeda yang dipengaruhi oleh situasi cuaca. 
   
- **Rata-rata penyewaan sepeda berdasarkan musim dan cuaca**
+ **Rata-rata Penyewaan Sepeda berdasarkan Musim dan Cuaca:**
   Visualisasi ini menggambarkan rata-rata penyewaan sepeda yang dipengaruhi oleh musim dan kondisi cuaca. Diagram batang ini memberikan pemahaman tentang bagaimana musim dan cuaca memengaruhi jumlah penyewaan sepeda.
   
 # Instalasi
