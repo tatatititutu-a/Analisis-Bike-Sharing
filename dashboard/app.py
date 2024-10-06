@@ -73,23 +73,3 @@ plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Clustering Results based on Temperature and Bike Rentals')
 st.pyplot(plt)
 
-# Visualisasi jumlah penyewaan sepeda untuk setiap kelompok
-st.subheader("Average Bike Rentals by Season and Weather")
-plt.figure(figsize=(12, 6))
-sns.barplot(x='season_weather', y='cnt', data=season_weather_rental, palette='viridis')
-plt.xlabel('Season and Weather')
-plt.ylabel('Average Bike Rentals')
-plt.title('Average Bike Rentals by Season and Weather')
-plt.xticks(rotation=45, ha='right')
-st.pyplot(plt)
-
-# Menentukan kelompok berdasarkan jumlah penyewaan sepeda
-high_rental = season_weather_rental[season_weather_rental['cnt'] > 5000]['season_weather'].tolist()
-medium_rental = season_weather_rental[(season_weather_rental['cnt'] >= 2000) & (season_weather_rental['cnt'] <= 5000)]['season_weather'].tolist()
-low_rental = season_weather_rental[season_weather_rental['cnt'] < 2000]['season_weather'].tolist()
-
-# Menampilkan kelompok penyewaan di Streamlit
-st.subheader("Bike Rental Groups")
-st.write(f"**Kelompok Penyewaan Tinggi:** {', '.join(high_rental)}")
-st.write(f"**Kelompok Penyewaan Sedang:** {', '.join(medium_rental)}")
-st.write(f"**Kelompok Penyewaan Rendah:** {', '.join(low_rental)}")
