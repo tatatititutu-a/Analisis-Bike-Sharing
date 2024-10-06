@@ -49,6 +49,12 @@ plt.ylabel('Total Bike Rentals (cnt)')
 plt.title('Distribution of Bike Rentals by Weather Situation')
 st.pyplot(plt)
 
+# Membuat kolom baru 'season_weather' yang menggabungkan musim dan cuaca
+df['season_weather'] = df['season'].astype(str) + '_' + df['weathersit'].astype(str)
+
+# Menampilkan jumlah penyewaan sepeda untuk setiap kelompok 'season_weather'
+season_weather_rental = df.groupby('season_weather')['cnt'].mean().reset_index()
+
 # Analisis Cluster
 st.subheader("Clustering Analysis of Bike Rentals")
 features = ['temp', 'hum', 'windspeed', 'cnt']  # Ganti 'cnt_x' ke 'cnt'
@@ -58,33 +64,38 @@ X = df[features]
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-# Membuat kolom baru 'season_weather' yang menggabungkan musim dan cuaca
-df1['season_weather'] = df1['season'].astype(str) + '_' + df1['weathersit'].astype(str)
+# Membuat model KMeans
+n_clusters = 3
+kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+kmeans.fit(X_scaled)
 
-# Menampilkan jumlah penyewaan sepeda untuk setiap kelompok 'season_weather'
-season_weather_rental = df1.groupby('season_weather')['cnt'].mean().reset_index()
+df['cluster'] = kmeans.labels_
 
-# Menyimpan hasil ke dalam file CSV
-season_weather_rental.to_csv('dashboard/main_data.csv', index=False)
+# Visualisasi cluster
+plt.figure(figsize=(10, 6))
+plt.scatter(df['temp'], df['cnt'], c=df['cluster'], cmap='viridis')
+plt.xlabel('Temperature')
+plt.ylabel('Total Bike Rentals (cnt)')
+plt.title('Clustering Results based on Temperature and Bike Rentals')
+st.pyplot(plt)
 
 # Visualisasi jumlah penyewaan sepeda untuk setiap kelompok
-import matplotlib.pyplot as plt
-
+st.subheader("Average Bike Rentals by Season and Weather")
 plt.figure(figsize=(12, 6))
-season_weather_rental.plot(kind='bar', x='season_weather', y='cnt', legend=False)
+sns.barplot(x='season_weather', y='cnt', data=season_weather_rental, palette='viridis')
 plt.xlabel('Season and Weather')
 plt.ylabel('Average Bike Rentals')
 plt.title('Average Bike Rentals by Season and Weather')
 plt.xticks(rotation=45, ha='right')
-plt.tight_layout()  # Menyesuaikan layout agar tidak terpotong
-plt.savefig('average_bike_rentals_by_season_and_weather.png')  # Menyimpan gambar
-plt.show()
+st.pyplot(plt)
 
 # Menentukan kelompok berdasarkan jumlah penyewaan sepeda
 high_rental = season_weather_rental[season_weather_rental['cnt'] > 5000]['season_weather'].tolist()
 medium_rental = season_weather_rental[(season_weather_rental['cnt'] >= 2000) & (season_weather_rental['cnt'] <= 5000)]['season_weather'].tolist()
 low_rental = season_weather_rental[season_weather_rental['cnt'] < 2000]['season_weather'].tolist()
 
-print("Kelompok Penyewaan Tinggi:", high_rental)
-print("Kelompok Penyewaan Sedang:", medium_rental)
-print("Kelompok Penyewaan Rendah:", low_rental)
+# Menampilkan kelompok penyewaan di Streamlit
+st.subheader("Bike Rental Groups")
+st.write(f"**Kelompok Penyewaan Tinggi:** {', '.join(high_rental)}")
+st.write(f"**Kelompok Penyewaan Sedang:** {', '.join(medium_rental)}")
+st.write(f"**Kelompok Penyewaan Rendah:** {', '.join(low_rental)}")
