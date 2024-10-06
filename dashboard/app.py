@@ -5,9 +5,6 @@ import streamlit as st
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-# Load dataset
-df = pd.read_csv('dashboard/main_data.csv')
-
 def main_data(file_path):
     # Load the data
     df = pd.read_csv(file_path)
@@ -24,7 +21,10 @@ def main_data(file_path):
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
     plt.title(f'Correlation Matrix for {file_path}')
     plt.show()
-  
+
+# Load dataset
+df = pd.read_csv('dashboard/main_data.csv')
+
 # Convert 'dteday' to datetime
 df['dteday'] = pd.to_datetime(df['dteday'])
 
@@ -81,3 +81,7 @@ plt.xlabel('Temperature (temp_x)')
 plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Clustering Results based on Temperature and Bike Rentals')
 st.pyplot(plt)
+
+# Call the main function for day.csv and hour.csv
+main_data('day.csv')
+main_data('hour.csv')
