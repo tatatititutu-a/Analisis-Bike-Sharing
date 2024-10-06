@@ -72,4 +72,3 @@ plt.xlabel('Temperature (temp_x)')
 plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Clustering Results based on Temperature and Bike Rentals')
 st.pyplot(plt)
-
