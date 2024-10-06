@@ -9,7 +9,11 @@ from sklearn.preprocessing import StandardScaler
 df = pd.read_csv('dashboard/main_data.csv')
 
 # data eksplor main_data
-def explore_data(df):
+def explore_data(df, file_path):
+    # Calculate the correlation matrix
+    correlation_matrix = df.corr()
+    print(f"\nCorrelation Matrix for {file_path}:")
+    print(correlation_matrix)
 
     # Visualize the correlation matrix
     plt.figure(figsize=(10, 6))
@@ -73,3 +77,6 @@ plt.xlabel('Temperature (temp_x)')
 plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Clustering Results based on Temperature and Bike Rentals')
 st.pyplot(plt)
+
+# Call the explore_data function
+explore_data(df, 'main_data.csv')
