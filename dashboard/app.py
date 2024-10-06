@@ -94,26 +94,17 @@ X = df[features]
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-# Membuat model KMeans
-n_clusters = 3
-kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-kmeans.fit(X_scaled)
-
-df['cluster'] = kmeans.labels_
-
-# Visualisasi cluster
-plt.figure(figsize=(10, 6))
-plt.scatter(df['temp'], df['cnt'], c=df['cluster'], cmap='viridis')
-plt.xlabel('Temperature (temp)')
-plt.ylabel('Total Bike Rentals (cnt)')
-plt.title('Clustering Results based on Temperature and Bike Rentals')
+# Visualisasi jumlah penyewaan sepeda untuk setiap kelompok 'season_weather'
+st.subheader("Bar Chart: Average Bike Rentals by Season and Weather")
+plt.figure(figsize=(12, 6))
+season_weather_rental.plot(kind='bar', color='skyblue', edgecolor='black')
+plt.xlabel('Season and Weather')
+plt.ylabel('Average Bike Rentals')
+plt.title('Average Bike Rentals by Season and Weather')
+plt.xticks(rotation=45, ha='right')
 st.pyplot(plt)
 
-# Visualisasi Distribusi Cluster per Musim
-st.subheader("Distribution of Bike Rentals by Cluster and Season")
-plt.figure(figsize=(10, 6))
-sns.boxplot(x='cluster', y='cnt', hue='season', data=df, palette='Set3')
-plt.xlabel('Cluster')
-plt.ylabel('Total Bike Rentals')
-plt.title('Distribution of Bike Rentals by Cluster and Season')
-st.pyplot(plt)
+# Menentukan kelompok berdasarkan jumlah penyewaan sepeda
+high_rental = season_weather_rental[season_weather_rental > 5000].index.tolist()
+medium_rental = season_weather_rental[(season_weather_rental >= 2000) & (season_weather_rental <= 5000)].index.tolist()
+low_rental = season_weather_rental[season_weather_rental < 2000].index.tolist()
