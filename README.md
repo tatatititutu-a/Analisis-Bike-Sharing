@@ -26,11 +26,11 @@ Matriks Korelasi
 Grafik Penyewaan Sepeda
   Grafik ini memvisualisasikan distribusi total penyewaan sepeda yang dimana untuk menunjukan frekuensi jumlah penyewaan yang berbeda.
 
-Katagori Penyewaan Sepeda per Musim
+**Katagori Penyewaan Sepeda per Musim**
   Yang dimana mengkatagorikan penyewaan sepeda berdasarkan setiap musim, sehingga lebih memudahkan untuk bisa membandingkan setiap tahunnya.
 
-Analisis Pengelompokan
- Untuk mengelompokkan data ke dalam beberapa cluster yang diterapkan pada fitur-fitur yang dipilih seperti auhu,kelembapan,kecepatan angin, dan jumlah penyewaan sepeda. Hasil dari divisualisasikan menunjukkan tingkat suhu dan penyewaan sepeda yang berbeda membentuk cluster.
+**Analisis Pengelompokan**
+ Untuk mengelompokkan data ke dalam beberapa cluster yang diterapkan pada fitur-fitur yang dipilih seperti suhu,kelembapan,kecepatan angin, dan jumlah penyewaan sepeda. Hasil dari divisualisasikan menunjukkan tingkat suhu dan penyewaan sepeda yang berbeda membentuk cluster.
 
 # Penggunaan
 1. # Setup Lingkungan di Google Colab
