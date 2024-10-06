@@ -14,13 +14,6 @@ df['dteday'] = pd.to_datetime(df['dteday'])
 # Judul Dashboard 
 st.title("Bike Rental Analysis Dashboard")
 
-# Visualization - Correlation matrix
-    correlation_matrix = df.corr()
-    plt.figure(figsize=(10, 6))
-    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-    plt.title('Correlation Matrix for Main Data')
-    st.pyplot(plt)
-
 # Menampilkan histogram penyewaan sepeda
 st.subheader("Histogram of Bike Rentals")
 plt.figure(figsize=(10, 6))
@@ -71,3 +64,7 @@ plt.xlabel('Temperature (temp_x)')
 plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Clustering Results based on Temperature and Bike Rentals')
 st.pyplot(plt)
+
+# Run the Streamlit app
+if _name_ == '_main_':
+    st.write("Dashboard is ready!")
