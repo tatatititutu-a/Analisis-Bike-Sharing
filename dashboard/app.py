@@ -6,8 +6,8 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
 # Load datasets
-df1 = pd.read_csv('day.csv')
-df2 = pd.read_csv('hour.csv')
+df = pd.read_csv('dashboard/main_data.csv')
+
 
 # Convert 'dteday' to datetime
 df1['dteday'] = pd.to_datetime(df1['dteday'])
