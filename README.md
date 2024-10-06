@@ -33,12 +33,13 @@ Analisis Pengelompokan
  Untuk mengelompokkan data ke dalam beberapa cluster yang diterapkan pada fitur-fitur yang dipilih seperti auhu,kelembapan,kecepatan angin, dan jumlah penyewaan sepeda. Hasil dari divisualisasikan menunjukkan tingkat suhu dan penyewaan sepeda yang berbeda membentuk cluster.
 
 # Penggunaan
-1. Setup Lingkungan di Google Colab
-   Pastikan untuk install library yang memang diperlukan lalu jalankan kode dibawah ini:
+1. # Setup Lingkungan di Google Colab
+
+   Pastikan untuk install library yang memang diperlukan lalu jalankan kode berikut ini:
    !pip install -r requirements.txt
-2. Menajalankan Dashboard
+3. # Menajalankan Dashboard
    
-3. 
+4. 
 
 5. Menjalankan Aplikasi Streamlit
 
