@@ -9,6 +9,10 @@ df = pd.read_csv('dashboard/main_data.csv')
 # Convert 'dteday' to datetime
 df['dteday'] = pd.to_datetime(df['dteday'])
 
+# Mengganti nama kolom untuk menyederhanakan akses
+df.rename(columns={'cnt_x': 'cnt', 'season_x': 'season', 'weathersit_x': 'weathersit', 
+                   'holiday_x': 'holiday'}, inplace=True)
+
 # Judul Dashboard 
 st.title("Bike Rental Analysis Dashboard")
 
