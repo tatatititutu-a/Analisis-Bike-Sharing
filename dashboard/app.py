@@ -16,7 +16,7 @@ st.title("Bike Rental Analysis Dashboard")
 
 # Korelasi matrix
 correlation_matrix = df.corr()
-st.write(f"\nCorrelation Matrix for Day}:")
+st.write(f"\nCorrelation Matrix for Hour}:")
 st.write(correlation_matrix)
 
 # Visualisasi matrix
