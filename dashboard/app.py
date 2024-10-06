@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
 
 # Load dataset
 df = pd.read_csv('dashboard/main_data.csv')
@@ -9,41 +11,43 @@ df = pd.read_csv('dashboard/main_data.csv')
 # Convert 'dteday' to datetime
 df['dteday'] = pd.to_datetime(df['dteday'])
 
-# Rename columns for simpler access (adjust based on actual column names in your CSV)
-df.rename(columns={'cnt_x': 'cnt', 'season_x': 'season', 'weathersit_x': 'weathersit', 
-                   'holiday_x': 'holiday'}, inplace=True)
-
-# Title of the Dashboard 
+# Judul Dashboard 
 st.title("Bike Rental Analysis Dashboard")
 
-# Visualizing correlation matrix
+# Visualization - Correlation matrix
 st.subheader("Correlation Matrix")
 correlation_matrix = df.corr()
 plt.figure(figsize=(10, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix Main Data')
+plt.title('Correlation Matrix for Main Data')
 st.pyplot(plt)
-plt.clf()  
 
-# Visualizing bike rentals per day
-st.subheader("Histogram of Bike Rentals per Day")
+# Menampilkan histogram penyewaan sepeda
+st.subheader("Histogram of Bike Rentals")
 plt.figure(figsize=(10, 6))
-plt.hist(df['cnt'], bins=20, color='skyblue', edgecolor='black')
-plt.xlabel('Total Bike Rentals')
+plt.hist(df['cnt_x'], bins=20, color='skyblue', edgecolor='black')
+plt.xlabel('Total Bike Rentals (cnt_x)')
 plt.ylabel('Frequency')
 plt.title('Histogram of Bike Rentals per Day')
 st.pyplot(plt)
-plt.clf()  
 
-# Analysis of bike rentals by season
-st.subheader("Box Plot of Bike Rentals by Season")
+# Menampilkan box plot penyewaan sepeda per musim
+st.subheader("Box Plot of Bike Rentals per Season")
 plt.figure(figsize=(10, 6))
-sns.boxplot(x='season', y='cnt', data=df, palette='Set3')
-plt.xlabel('Season')
-plt.ylabel('Total Bike Rentals')
-plt.title('Box Plot of Bike Rentals by Season')
+sns.boxplot(x='season_x', y='cnt_x', data=df, palette='Set3')
+plt.xlabel('Season (season_x)')
+plt.ylabel('Total Bike Rentals (cnt_x)')
+plt.title('Box Plot of Bike Rentals per Season')
 st.pyplot(plt)
-plt.clf() 
+
+# Dampak cuaca pada penyewaan sepeda (visualisasi distribusi)
+st.subheader("Impact of Weather on Bike Rentals")
+plt.figure(figsize=(8, 6))
+sns.boxplot(x='weathersit_x', y='cnt_x', data=df)
+plt.xlabel('Weather Situation (weathersit_x)')
+plt.ylabel('Total Bike Rentals (cnt_x)')
+plt.title('Distribution of Bike Rentals by Weather Situation')
+st.pyplot(plt)
 
 # Impact of Holiday on Bike Rentals
 st.subheader("Impact of Holiday on Bike Rentals")
@@ -54,34 +58,36 @@ plt.xlabel('Holiday (0: No, 1: Yes)')
 plt.ylabel('Average Bike Rentals')
 plt.title('Impact of Holiday on Bike Rentals')
 st.pyplot(plt)
-plt.clf() 
-
-# Impact of Weather on Bike Rentals
-st.subheader("Impact of Weather Situation on Bike Rentals")
-weather_rental = df.groupby('weathersit')['cnt'].mean()
-plt.figure(figsize=(8, 6))
-plt.bar(weather_rental.index, weather_rental.values, color='lightblue')
-plt.xlabel('Weather Situation (1: Clear, 2: Mist, 3: Light Snow/Rain, 4: Heavy Rain/Snow)')
-plt.ylabel('Average Bike Rentals')
-plt.title('Impact of Weather on Bike Rentals')
-st.pyplot(plt)
-plt.clf()  
-
-# Distribution of Bike Rentals by Weather Situation
-st.subheader("Distribution of Bike Rentals by Weather Situation")
-plt.figure(figsize=(8, 6))
-sns.boxplot(x='weathersit', y='cnt', data=df)
-plt.xlabel('Weather Situation')
-plt.ylabel('Total Bike Rentals')
-plt.title('Distribution of Bike Rentals by Weather Situation')
-st.pyplot(plt)
 plt.clf()
+
+# Analisis Cluster
+st.subheader("Clustering Analysis of Bike Rentals")
+features = ['temp_x', 'hum_x', 'windspeed_x', 'cnt_x']
+X = df[features]
+
+# Standarisasi data
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Membuat model KMeans
+n_clusters = 3
+kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+kmeans.fit(X_scaled)
+
+df['cluster'] = kmeans.labels_
+
+# Visualisasi cluster
+plt.figure(figsize=(10, 6))
+plt.scatter(df['temp_x'], df['cnt_x'], c=df['cluster'], cmap='viridis')
+plt.xlabel('Temperature (temp_x)')
+plt.ylabel('Total Bike Rentals (cnt_x)')
+plt.title('Clustering Results based on Temperature and Bike Rentals')
+st.pyplot(plt)
 
 # Average Bike Rentals by Season and Weather
 st.subheader("Average Bike Rentals by Season and Weather")
 df['season_weather'] = df['season'].astype(str) + '_' + df['weathersit'].astype(str)
-season_weather_rental = df.groupby('season_weather')['cnt'].mean()
-
+season_weather_rental = df.groupby('season_weather')['cnt_x'].mean()
 plt.figure(figsize=(12, 6))
 season_weather_rental.plot(kind='bar', color='salmon')
 plt.xlabel('Season and Weather')
@@ -89,13 +95,4 @@ plt.ylabel('Average Bike Rentals')
 plt.title('Average Bike Rentals by Season and Weather')
 plt.xticks(rotation=45, ha='right')
 st.pyplot(plt)
-plt.clf()  
-
-# Identifying Rental Groups
-high_rental = season_weather_rental[season_weather_rental > 5000].index.tolist()
-medium_rental = season_weather_rental[(season_weather_rental >= 2000) & (season_weather_rental <= 5000)].index.tolist()
-low_rental = season_weather_rental[season_weather_rental < 2000].index.tolist()
-
-st.write("Kelompok Penyewaan Tinggi:", high_rental)
-st.write("Kelompok Penyewaan Sedang:", medium_rental)
-st.write("Kelompok Penyewaan Rendah:", low_rental)
+plt.clf()
