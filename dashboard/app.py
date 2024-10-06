@@ -8,6 +8,23 @@ from sklearn.preprocessing import StandardScaler
 # Load dataset
 df = pd.read_csv('dashboard/main_data.csv')
 
+def main_data(file_path):
+    # Load the data
+    df = pd.read_csv(file_path)
+
+    # Calculate the correlation matrix
+    correlation_matrix = df.corr()
+
+    # Print the correlation matrix
+    print(f"\nCorrelation Matrix for {file_path}:")
+    print(correlation_matrix)
+
+    # Visualize the correlation matrix
+    plt.figure(figsize=(10, 6))
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+    plt.title(f'Correlation Matrix for {file_path}')
+    plt.show()
+  
 # Convert 'dteday' to datetime
 df['dteday'] = pd.to_datetime(df['dteday'])
 
