@@ -9,11 +9,11 @@ df = pd.read_csv('dashboard/main_data.csv')
 # Convert 'dteday' to datetime
 df['dteday'] = pd.to_datetime(df['dteday'])
 
-# Mengganti nama kolom untuk menyederhanakan akses
+# Rename columns for simpler access (adjust based on actual column names in your CSV)
 df.rename(columns={'cnt_x': 'cnt', 'season_x': 'season', 'weathersit_x': 'weathersit', 
                    'holiday_x': 'holiday'}, inplace=True)
 
-# Judul Dashboard 
+# Title of the Dashboard 
 st.title("Bike Rental Analysis Dashboard")
 
 # Visualizing correlation matrix
@@ -90,6 +90,7 @@ plt.title('Average Bike Rentals by Season and Weather')
 plt.xticks(rotation=45, ha='right')
 st.pyplot(plt)
 plt.clf()  
+
 # Identifying Rental Groups
 high_rental = season_weather_rental[season_weather_rental > 5000].index.tolist()
 medium_rental = season_weather_rental[(season_weather_rental >= 2000) & (season_weather_rental <= 5000)].index.tolist()
