@@ -37,11 +37,10 @@ Analisis Pengelompokan
 
    Pastikan untuk install library yang memang diperlukan lalu jalankan kode berikut ini:
    !pip install -r requirements.txt
-3. # Menajalankan Dashboard
    
-4. 
+2. # Menajalankan Dashboard
+   Ketika library sudah terinstall, lalu jalankan aplikasi streamlit dengan perintah berikut:
+   !streamlit run dashboard/app.py & npx localtunnel --port 8501
 
-5. Menjalankan Aplikasi Streamlit
-
-   Lalu Jalankan aplikasi Streamlit dengan perintah:
-   streamlit run app.py 
+3. # Link Dashboard
+   Untuk Link Dasboard bisa di akses melalui url.txt
