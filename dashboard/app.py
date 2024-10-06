@@ -49,18 +49,3 @@ plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Distribution of Bike Rentals by Weather Situation')
 st.pyplot(plt)
 
-# Analisis Cluster
-st.subheader("Clustering Analysis of Bike Rentals")
-features = ['temp_x', 'hum_x', 'windspeed_x', 'cnt_x']
-X = df[features]
-
-# Standarisasi data
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-
-# Membuat model KMeans
-n_clusters = 3
-kmeans = KMeans(n_clusters=n_clusters, random_state=42)
-kmeans.fit(X_scaled)
-
-df['cluster'] = kmeans.labels_
