@@ -23,7 +23,7 @@ plt.figure(figsize=(10, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
 plt.title('Correlation Matrix Main Data')
 st.pyplot(plt)
-plt.clf()  # Clear the figure after displaying
+plt.clf()  
 
 # Visualizing bike rentals per day
 st.subheader("Histogram of Bike Rentals per Day")
@@ -33,7 +33,7 @@ plt.xlabel('Total Bike Rentals')
 plt.ylabel('Frequency')
 plt.title('Histogram of Bike Rentals per Day')
 st.pyplot(plt)
-plt.clf()  # Clear the figure after displaying
+plt.clf()  
 
 # Analysis of bike rentals by season
 st.subheader("Box Plot of Bike Rentals by Season")
@@ -43,7 +43,7 @@ plt.xlabel('Season')
 plt.ylabel('Total Bike Rentals')
 plt.title('Box Plot of Bike Rentals by Season')
 st.pyplot(plt)
-plt.clf()  # Clear the figure after displaying
+plt.clf() 
 
 # Impact of Holiday on Bike Rentals
 st.subheader("Impact of Holiday on Bike Rentals")
@@ -54,7 +54,7 @@ plt.xlabel('Holiday (0: No, 1: Yes)')
 plt.ylabel('Average Bike Rentals')
 plt.title('Impact of Holiday on Bike Rentals')
 st.pyplot(plt)
-plt.clf()  # Clear the figure after displaying
+plt.clf() 
 
 # Impact of Weather on Bike Rentals
 st.subheader("Impact of Weather Situation on Bike Rentals")
@@ -65,7 +65,7 @@ plt.xlabel('Weather Situation (1: Clear, 2: Mist, 3: Light Snow/Rain, 4: Heavy R
 plt.ylabel('Average Bike Rentals')
 plt.title('Impact of Weather on Bike Rentals')
 st.pyplot(plt)
-plt.clf()  # Clear the figure after displaying
+plt.clf()  
 
 # Distribution of Bike Rentals by Weather Situation
 st.subheader("Distribution of Bike Rentals by Weather Situation")
@@ -75,7 +75,7 @@ plt.xlabel('Weather Situation')
 plt.ylabel('Total Bike Rentals')
 plt.title('Distribution of Bike Rentals by Weather Situation')
 st.pyplot(plt)
-plt.clf()  # Clear the figure after displaying
+plt.clf()
 
 # Average Bike Rentals by Season and Weather
 st.subheader("Average Bike Rentals by Season and Weather")
@@ -89,8 +89,7 @@ plt.ylabel('Average Bike Rentals')
 plt.title('Average Bike Rentals by Season and Weather')
 plt.xticks(rotation=45, ha='right')
 st.pyplot(plt)
-plt.clf()  # Clear the figure after displaying
-
+plt.clf()  
 # Identifying Rental Groups
 high_rental = season_weather_rental[season_weather_rental > 5000].index.tolist()
 medium_rental = season_weather_rental[(season_weather_rental >= 2000) & (season_weather_rental <= 5000)].index.tolist()
