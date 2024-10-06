@@ -1,3 +1,4 @@
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
@@ -48,7 +49,6 @@ plt.ylabel('Total Bike Rentals (cnt_x)')
 plt.title('Distribution of Bike Rentals by Weather Situation')
 st.pyplot(plt)
 
-
 # Analisis Cluster
 st.subheader("Clustering Analysis of Bike Rentals")
 features = ['temp_x', 'hum_x', 'windspeed_x', 'cnt_x']
@@ -64,11 +64,3 @@ kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 kmeans.fit(X_scaled)
 
 df['cluster'] = kmeans.labels_
-
-# Visualisasi cluster
-plt.figure(figsize=(10, 6))
-plt.scatter(df['temp_x'], df['cnt_x'], c=df['cluster'], cmap='viridis')
-plt.xlabel('Temperature (temp_x)')
-plt.ylabel('Total Bike Rentals (cnt_x)')
-plt.title('Clustering Results based on Temperature and Bike Rentals')
-st.pyplot(plt)
