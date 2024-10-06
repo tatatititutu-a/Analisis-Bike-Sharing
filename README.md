@@ -20,7 +20,7 @@ hour.csv : Pada data set ini berisikan informasi tentang berapa jam penyewa meny
 day.csv : Pada data set ini berisikan informasi mengenai suhu, kelembapan pada saat menyewa sepeda setiap harinya.
 
 # Visualisasi
-**Correlation matrix**
+**Correlation matrix:**
  Pada Visualisasi menunjukan Correlation Matrix dari dataset utama yang digunakan untuk menganalisis penyewaan sepeda. Matriks ini memperlihatkan hubungan antara suhu (temp), kelembaban (hum), kecepatan angin (windspeed), dan total penyewaan (cnt) yang berpotensi mempengaruhi jumlah penyewaan sepeda.
 
 **Histogram Penyewaan Sepeda:**
