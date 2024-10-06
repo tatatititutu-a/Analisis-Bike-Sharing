@@ -14,13 +14,14 @@ df['dteday'] = pd.to_datetime(df['dteday'])
 # Judul Dashboard 
 st.title("Bike Rental Analysis Dashboard")
 
-# Visualization - Correlation matrix
-st.subheader("Correlation Matrix")
+# Calculate the correlation matrix
 correlation_matrix = df.corr()
-plt.figure(figsize=(10, 6))
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix for Main Data')
-st.pyplot(plt)
+
+# Visualize the correlation matrix
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', ax=ax)
+ax.set_title(f'Correlation Matrix for {file_path}')
+
 # Menampilkan histogram penyewaan sepeda
 st.subheader("Histogram of Bike Rentals")
 plt.figure(figsize=(10, 6))
