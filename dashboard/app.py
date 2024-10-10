@@ -4,7 +4,7 @@ import seaborn as sns
 import streamlit as st
 
 # Load dataset
-df = pd.read_csv('dashboard/main_data.csv')
+df = pd.read_csv('main_data.csv')
 
 # Convert 'dteday' to datetime
 df['dteday'] = pd.to_datetime(df['dteday'])
