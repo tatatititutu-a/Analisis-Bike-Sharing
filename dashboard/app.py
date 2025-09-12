@@ -1,5 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Debug direktori kerja dan file yang tersedia
+st.write("Current working directory:", os.getcwd())
+st.write("Files in current directory:", os.listdir())
+
 import seaborn as sns
 import streamlit as st
 import os
@@ -107,3 +112,4 @@ if df is not None:
     high_rental = season_weather_rental[season_weather_rental > 5000].index.tolist()
     medium_rental = season_weather_rental[(season_weather_rental >= 2000) & (season_weather_rental <= 5000)].index.tolist()
     low_rental = season_weather_rental[season_weather_rental < 2000].index.tolist()
+
